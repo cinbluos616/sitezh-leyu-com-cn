@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cinbluos616.github.io/sitezh-leyu-com-cn/sitemap.xml
