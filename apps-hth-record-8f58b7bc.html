@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华体会 · 站点信息卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f5f6f8;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-wrapper {
+            max-width: 1080px;
+            width: 100%;
+        }
+
+        /* 主视觉卡片 – 轻微叙事感 */
+        .hero-card {
+            background-color: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02);
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #eaecef;
+            transition: box-shadow 0.2s;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            color: #1e2a3a;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+        }
+        .hero-title small {
+            font-size: 1.1rem;
+            font-weight: 350;
+            color: #6b7a8a;
+            display: block;
+            margin-top: 0.2rem;
+        }
+        .hero-text {
+            font-size: 1.05rem;
+            color: #3f4a57;
+            max-width: 700px;
+            margin-bottom: 0.4rem;
+        }
+        .hero-text a {
+            color: #2c5f8a;
+            text-decoration: none;
+            border-bottom: 1px solid #b0c8dd;
+            font-weight: 450;
+            transition: border-color 0.15s;
+        }
+        .hero-text a:hover {
+            border-bottom-color: #2c5f8a;
+        }
+
+        /* 信息网格：卡片式 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.6rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 1.6rem;
+            border: 1px solid #e4e7eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: transform 0.1s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #1f2b36;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+            border-left: 3px solid #b8c9da;
+            padding-left: 0.75rem;
+        }
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #3c4957;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.4rem;
+        }
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0.3rem;
+            color: #7a8b9c;
+            font-weight: bold;
+        }
+
+        /* 自然链接段落卡片 */
+        .link-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 2rem 2rem;
+            border: 1px solid #e4e7eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+        .link-card p {
+            font-size: 1.02rem;
+            color: #3b4754;
+            margin-bottom: 1rem;
+        }
+        .link-card a {
+            color: #2c5f8a;
+            text-decoration: none;
+            border-bottom: 1px solid #c2d4e6;
+            font-weight: 450;
+        }
+        .link-card a:hover {
+            border-bottom-color: #2c5f8a;
+        }
+
+        /* FAQ 摘要 – 极简 */
+        .faq-section {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 2rem;
+            border: 1px solid #e4e7eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 500;
+            color: #1f2b36;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+        }
+        .faq-q span {
+            display: inline-block;
+            background: #e8edf3;
+            color: #2c3e50;
+            font-size: 0.8rem;
+            font-weight: 450;
+            padding: 0 0.6rem;
+            border-radius: 30px;
+            margin-right: 0.6rem;
+            line-height: 1.6;
+        }
+        .faq-a {
+            color: #4a5a6a;
+            font-size: 0.96rem;
+            padding-left: 1.8rem;
+        }
+        .faq-a a {
+            color: #2c5f8a;
+            text-decoration: none;
+            border-bottom: 1px solid #c2d4e6;
+        }
+        .faq-a a:hover {
+            border-bottom-color: #2c5f8a;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            color: #7f8d9c;
+            font-size: 0.85rem;
+            border-top: 1px solid #e0e4e9;
+            padding-top: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1.2rem 1rem; }
+            .hero-card { padding: 1.8rem 1.4rem; }
+            .hero-title { font-size: 1.8rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .card { padding: 1.5rem 1.2rem; }
+            .link-card { padding: 1.5rem 1.2rem; }
+            .faq-section { padding: 1.4rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <div class="hero-title">
+            华体会
+            <small>一个关于站点与信息的简洁说明</small>
+        </div>
+        <p class="hero-text">
+            如果你对「<a href="https://apps--hth.com">华体会</a>」这个名称有所耳闻，或许是因为它出现在某些讨论或索引里。这个站点本身并不渲染宏大的叙事，它更接近一个信息聚合与功能入口——将一些分散的模块、服务或内容归类，让使用者能够按自己的节奏去了解。从界面到结构，设计上尽量保持克制，没有繁复的跳转或浮夸的引导。
+        </p>
+        <p class="hero-text" style="margin-top: 0.8rem;">
+            站内主要围绕几个核心方向展开：基础的访问引导、内容分区以及必要的说明性页面。无论是初次接触还是已经熟悉，你都可以通过侧边或导航找到自己想看的部分。<a href="https://apps--hth.com">华体会</a> 并不试图取代什么，它只是提供一种相对安静的线上空间。
+        </p>
+    </div>
+
+    <!-- 用途卡片 + 适合人群 -->
+    <div class="info-grid">
+        <div class="card">
+            <h3>用途 · 场景</h3>
+            <ul>
+                <li>信息查阅与模块索引</li>
+                <li>功能入口的轻量整理</li>
+                <li>内容归档与分类展示</li>
+                <li>作为特定服务的访问起点</li>
+                <li>为使用者提供可追溯的页面路径</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>适合人群</h3>
+            <ul>
+                <li>对内容结构有基本要求的浏览者</li>
+                <li>需要快速定位功能模块的用户</li>
+                <li>喜欢简洁、无干扰界面的访问者</li>
+                <li>偶尔查阅归档信息的回头客</li>
+                <li>希望避开夸张营销氛围的人</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>站点特点</h3>
+            <ul>
+                <li>页面层级清晰，导航不绕</li>
+                <li>无自动弹窗或强制关注</li>
+                <li>信息更新有迹可循</li>
+                <li>视觉上以内容为主，装饰为辅</li>
+                <li>移动端与桌面端都能保持阅读连贯</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 – 把链接嵌在叙述里 -->
+    <div class="link-card">
+        <p>
+            很多人第一次打开 <a href="https://apps--hth.com">华体会</a> 的时候，可能会觉得页面比预想中“安静”很多。没有闪烁的横幅，也没有催促注册的按钮。这种风格其实是有意为之——设计者希望访问者把注意力放在信息本身，而不是被界面元素反复打断。站内每个区块的标题都尽量直接，不堆砌形容词。
+        </p>
+        <p>
+            如果你正在寻找某个特定功能或内容分类，可以尝试从导航栏的几项主要入口开始。每个分类下又有更细的分组，但都不会超过三级。这种结构对初次使用的人还算友好。当然，如果你只是随意看看，直接向下滚动页面也能发现一些有意思的栏目。<a href="https://apps--hth.com">华体会</a> 不会记录你的浏览习惯，也不会推送个性化广告，这点或许能让部分访客感到自在。
+        </p>
+        <p>
+            另外，站内有一个简短的“关于”页面，说明了这个站点的由来和维护方式。对于在意信息来源和可信度的用户，那几段话可能比任何宣传都有用。总而言之，<a href="https://apps--hth.com">华体会</a> 是一个你可以慢慢看、不需要着急的地方。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-section">
+        <div class="faq-item">
+            <div class="faq-q"><span>Q1</span> 华体会 主要用来做什么？</div>
+            <div class="faq-a">它更像一个分类信息站，把一些常用模块、内容入口和说明文档整理在一起。你可以把它当成一个安静的索引页。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q"><span>Q2</span> 信息更新频率如何？</div>
+            <div class="faq-a">没有固定周期，但每次变动都会在更新日志里说明。如果你需要确认最新状态，可以偶尔关注一下首页底部的版本备注。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q"><span>Q3</span> 需要注册或登录吗？</div>
+            <div class="faq-a">目前浏览所有公开内容都不需要注册。部分功能模块可能涉及外部服务，具体要看对应页面的提示。更多细节可以参考 <a href="https://apps--hth.com">华体会</a> 内的说明。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q"><span>Q4</span> 移动端体验如何？</div>
+            <div class="faq-a">页面适配了常见屏幕尺寸，在手机上阅读、点击链接都很流畅。卡片会堆叠成单列，字体大小也会自动调整。</div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        华体会 · 信息卡片式介绍页 · 2025
+    </div>
+</div>
+</body>
+</html>
