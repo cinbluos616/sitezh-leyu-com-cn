@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息卡片 · ng体育 · 日常查询与对照</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #fafaf8;
+            color: #2c2c2c;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2.5rem 1.25rem;
+        }
+        .page {
+            max-width: 680px;
+            width: 100%;
+        }
+        /* 主视觉 —— 干净留白 */
+        .hero {
+            margin-bottom: 3rem;
+            padding-top: 1.5rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1e1e1e;
+            margin-bottom: 0.4rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #5e5e5b;
+            max-width: 540px;
+            margin-top: 0.5rem;
+        }
+        .intro-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #8a8a86;
+            border: 1px solid #dadad6;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            margin-bottom: 1.2rem;
+        }
+        /* 卡片网格 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2.5rem 0 3rem 0;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 14px rgba(0,0,0,0.02);
+            border: 1px solid #efefe9;
+            transition: box-shadow 0.2s ease;
+        }
+        .card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1f1f1d;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #cfcfc6;
+            padding-left: 0.9rem;
+        }
+        .card p {
+            color: #3d3d3a;
+            margin-bottom: 0.5rem;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.8rem 0 0 0;
+        }
+        .card li {
+            padding: 0.35rem 0;
+            color: #3d3d3a;
+            border-bottom: 1px dashed #f0f0ea;
+        }
+        .card li:last-child {
+            border-bottom: none;
+        }
+        .card li::before {
+            content: "·";
+            color: #acaca2;
+            font-weight: 300;
+            margin-right: 0.6rem;
+        }
+        /* 内联链接 */
+        a {
+            color: #2b5f4a;
+            text-decoration: none;
+            border-bottom: 1px solid #cdddd4;
+            transition: border-color 0.15s;
+        }
+        a:hover {
+            border-bottom-color: #2b5f4a;
+        }
+        /* 句子段落区 */
+        .flow-text {
+            margin: 2rem 0 2.5rem 0;
+            font-size: 1rem;
+            color: #363633;
+        }
+        .flow-text p {
+            margin-bottom: 1.2rem;
+        }
+        .highlight-bg {
+            background: #f3f3ee;
+            border-radius: 4px;
+            padding: 0.1rem 0.3rem;
+            font-style: normal;
+        }
+        /* FAQ 摘要 —— 紧凑样式 */
+        .faq-mini {
+            background: #f7f7f3;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin: 2.8rem 0 1.8rem 0;
+        }
+        .faq-mini h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1d1d1b;
+            margin-bottom: 1rem;
+        }
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.1rem;
+        }
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 450;
+            color: #2f2f2b;
+            font-size: 0.95rem;
+        }
+        .faq-a {
+            color: #5a5a56;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+        .faq-a a {
+            font-size: 0.9rem;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e2e2db;
+            margin: 2rem 0;
+        }
+        .footer-note {
+            font-size: 0.85rem;
+            color: #868680;
+            border-top: 1px solid #e8e8e1;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        /* 响应式 */
+        @media (max-width: 450px) {
+            body {
+                padding: 1.8rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .card {
+                padding: 1.5rem 1.25rem;
+                border-radius: 16px;
+            }
+            .faq-mini {
+                padding: 1.4rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 主视觉 / 标题区  -->
+    <div class="hero">
+        <span class="intro-tag">日常查询 · 信息卡片</span>
+        <h1>关于 ng体育，<br>从一次翻阅开始</h1>
+        <p>无需猛烈推荐，更像手边一份安静对照：用途、场景、适合谁，以及延伸阅读的线索。</p>
+    </div>
+
+    <!-- 三张用途卡片  -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>📋 日常查询 · 信息卡片</h2>
+            <p>遇到相关讨论时，快速核对条目、更新认知，而不是匆忙下结论。页面结构偏向简洁，便于扫读。</p>
+            <ul>
+                <li>基础信息与表述对照</li>
+                <li>常见关联概念的区分</li>
+                <li>简洁索引式布局</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>🧩 用途卡片 · 适合哪些场景</h2>
+            <p>写材料、做延伸阅读、或者只是想了解大致框架 —— 卡片之间彼此独立，可以单点查阅。</p>
+            <ul>
+                <li>内容梳理与背景延展</li>
+                <li>轻量级参考笔记</li>
+                <li>非正式讨论中的话题对照</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>👤 适合人群</h2>
+            <p>对信息结构有一定要求、希望页面保持克制风格的人。不追求喧闹，更看重可读性和留白节奏。</p>
+            <ul>
+                <li>日常信息收集者</li>
+                <li>需要温和语境的阅读者</li>
+                <li>喜欢卡片式分类的朋友</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 —— 嵌入句子  -->
+    <div class="flow-text">
+        <p>在翻阅资料时，如果希望找到一处结构干净、没有过多干扰的页面，可以试试 <a href="https://m-home-ngsports.com">ng体育</a>。它本身更像一个内容框架，适合慢慢对照、逐条查看。</p>
+        <p>不少人把它当作一个信息起点：先看卡片分类，再根据兴趣深入。这种方式比较接近翻阅一本小册子 —— 不需要立刻吸收所有内容，而是按自己的节奏来。</p>
+        <p>有时候，一个页面之所以让人觉得舒服，并不是因为它包含了多少东西，而是因为它没有把东西都堆在一起。留白和清晰的层级，有时候比信息密度更重要。</p>
+    </div>
+
+    <!-- FAQ 摘要  -->
+    <div class="faq-mini">
+        <h3>❓ 一些简短问答 · 摘要</h3>
+        <div class="faq-item">
+            <span class="faq-q">这个页面主要用来做什么？</span>
+            <span class="faq-a">提供日常查询和对照，不含过度承诺，更像一份安静的延伸阅读卡片。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">信息卡片怎么用？</span>
+            <span class="faq-a">直接浏览，或者当成临时索引；每个卡片独立，方便单独记忆。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">如果想看更完整的结构？</span>
+            <span class="faq-a">可以前往 <a href="https://m-home-ngsports.com">ng体育</a> 查看原始框架，那里有更多细节层级。</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+        <span>一份温和的卡片式页面 · ng体育</span><br>
+        <span style="font-size:0.8rem;">极简留白 · 窄正文 · 纯中文 · 无硬广</span>
+    </div>
+
+</div>
+</body>
+</html>
