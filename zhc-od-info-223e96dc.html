@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>od体育 · 站点介绍与使用说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f7fbfc;
+            color: #1f2b38;
+            line-height: 1.6;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 蓝绿点缀 & 卡片网格 */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 1.8rem 0.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: #115e67;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .subhead {
+            font-size: 1.05rem;
+            color: #447a85;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid #c7e3e8;
+            display: inline-block;
+        }
+
+        /* 网格卡片 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2.2rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(0, 45, 55, 0.06);
+            border: 1px solid #d8edf1;
+            transition: transform 0.12s ease, box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(20, 100, 110, 0.08);
+        }
+
+        .card .icon {
+            display: inline-block;
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: #1d7e8a;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #115e67;
+            margin: 0.3rem 0 0.6rem 0;
+        }
+
+        .card p {
+            color: #2a404a;
+            margin-bottom: 0.5rem;
+            font-size: 0.98rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e0f0f3;
+            color: #0b5b65;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            margin-top: 0.2rem;
+        }
+
+        .text-block {
+            background: #edf7f9;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem;
+            margin: 2.2rem 0;
+            border-left: 6px solid #3197a6;
+        }
+
+        .text-block h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #115e67;
+            margin-bottom: 0.8rem;
+        }
+
+        .text-block p {
+            margin-bottom: 0.7rem;
+        }
+
+        .faq-mini {
+            margin: 2rem 0;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1rem;
+            border: 1px solid #d3e6ea;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #135f6a;
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-item .a {
+            color: #365a63;
+            font-size: 0.96rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            border: 1.5px solid #3197a6;
+            border-radius: 50px;
+            color: #115e67;
+            background: transparent;
+            font-weight: 450;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.12s, color 0.12s;
+        }
+
+        .btn-outline:hover {
+            background: #3197a6;
+            color: white;
+        }
+
+        .footnote {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #5b7b83;
+            border-top: 1px solid #cde1e5;
+            padding-top: 2rem;
+        }
+
+        .footnote a {
+            color: #115e67;
+            text-decoration: none;
+            border-bottom: 1px dotted #7bb5bf;
+        }
+
+        .footnote a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* 移动端友好 */
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            body {
+                padding: 2.8rem 2rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero .subhead {
+                font-size: 1.15rem;
+            }
+        }
+
+        /* 辅助 */
+        .mt-2 {
+            margin-top: 0.8rem;
+        }
+        .inline-link {
+            color: #1c7d8a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #aacfd6;
+            font-weight: 450;
+        }
+        .inline-link:hover {
+            text-decoration-color: #115e67;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>关于这个站点</h1>
+            <div class="subhead">产品说明 · 用途与边界</div>
+        </div>
+
+        <!-- 摘要 -->
+        <div class="text-block">
+            <h2>od体育 是什么？</h2>
+            <p>
+                <strong>od体育</strong> 是一个围绕体育信息与运动内容聚合的线上站点。它并不是一家运营商或服务平台，更类似于一个指向体育相关内容的索引与信息页。你可以把它理解为一个轻量级的入口——如果你对某个体育方向感兴趣，它或许能帮你找到更具体的去处。整个站点的设计保持简洁，没有繁杂的跳转或商业化堆砌。如果你只是想了解体育资讯或特定项目，可以把这个地址记下来。
+            </p>
+            <p>
+                值得说明的是：<a href="https://zhc-od.com" class="inline-link">od体育</a> 本身不收集用户数据，也不提供任何形式的即时竞猜或支付功能。它的存在更像一个安静的路标——当你需要的时候，它就在那里。
+            </p>
+        </div>
+
+        <!-- 亮点卡片网格 -->
+        <div class="grid">
+            <div class="card">
+                <div class="icon">📋</div>
+                <h3>轻量索引</h3>
+                <p>没有大图轮播或弹窗，页面以文字和结构化信息为主。内容偏向体育项目简介、规则摘要、以及外部参考链接。适合快速浏览或作为知识补充。</p>
+                <span class="tag">无追踪</span>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧭</div>
+                <h3>场景参考</h3>
+                <p>如果你想了解某项运动的基本背景、或者需要一个干净的页面来查阅体育术语，这个站点可以作为一个起点。不适合作为交易或注册用途。</p>
+                <span class="tag">信息型</span>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔐</div>
+                <h3>可信但克制</h3>
+                <p>站点没有嵌入第三方脚本或广告联盟。内容经过基础核实，但依然建议你在做重要判断前交叉验证。毕竟体育世界日新月异。</p>
+                <span class="tag">无广告</span>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>移动优先</h3>
+                <p>无论手机还是平板，布局都会自适应。卡片网格与字体大小经过专门调整，阅读时不必频繁缩放。也可以横屏使用，体验一致。</p>
+                <span class="tag">响应式</span>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧩</div>
+                <h3>常见用途</h3>
+                <p>用于快速查阅体育名词、赛事背景、装备简介等。如果你在写体育相关文案或备课，它或许能帮你节省一点检索时间。</p>
+                <span class="tag">轻参考</span>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚙️</div>
+                <h3>使用建议</h3>
+                <p>建议配合浏览器书签使用。如果你发现某个链接失效或内容明显过时，可以留意站内是否有更新说明——目前更新频率不高但稳定。</p>
+                <span class="tag">低频更新</span>
+            </div>
+        </div>
+
+        <!-- 使用场景 + 说明 -->
+        <div class="text-block" style="border-left-color: #72b7c2;">
+            <h2>谁可能会用？</h2>
+            <p>
+                体育爱好者、内容创作者、体育相关专业的学生，以及只是偶然想了解某项运动的人。这个站点并不试图成为百科或新闻源，更像一个安静的参考角。无论你是想确认某个体育术语的拼写，还是想快速浏览几个运动项目的轮廓，<a href="https://zhc-od.com" class="inline-link">od体育</a> 都能提供一个不带干扰的阅读环境。
+            </p>
+            <p>
+                另外，由于站内没有任何注册或登录入口，你可以放心使用，不必担心个人信息问题。当然，任何外部链接跳转后的站点行为不在本说明范围内，请自行判断。
+            </p>
+            <a href="https://zhc-od.com" class="btn-outline">od体育</a>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h2 style="font-size:1.3rem; font-weight:500; color:#115e67; margin-bottom:1rem;">常见想法</h2>
+
+            <div class="faq-item">
+                <div class="q">这个站点有 app 吗？</div>
+                <div class="a">目前没有。仅通过网页访问，也没有计划推出独立客户端。移动端浏览器体验已做过适配。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="q">内容多久更新一次？</div>
+                <div class="a">没有固定的更新日历。内容调整会伴随体育赛季或规则变化偶尔进行。如果你发现明显错误，可以尝试通过站点内联系方式反馈（如果存在的话）。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="q">是否包含外部链接？</div>
+                <div class="a">是的，站内部分参考会指向公开的体育组织、维基页面或官方规则文档。这些链接仅作信息参考，并不代表背书。离开本页面后请自行留意隐私与安全。</div>
+            </div>
+        </div>
+
+        <!-- 尾注与链接 -->
+        <div class="footnote">
+            <p>
+                站点主页：<a href="https://zhc-od.com">od体育</a> · 本页面仅为介绍说明，不构成任何形式的使用协议或保证。
+            </p>
+            <p style="margin-top:0.6rem; opacity:0.7;">
+                信息截止于最近一次更新。体育的世界总有变化，请以实际为准。
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
